@@ -1,0 +1,10 @@
+domain: tmax.io
+layout: go.kubebuilder.io/v2
+repo: tmax.io
+resources:
+- group: claim
+  kind: NamespaceClaim
+  version: v1alpha1
+version: 3-alpha
+plugins:
+  go.operator-sdk.io/v2-alpha: {}
