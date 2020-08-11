@@ -12,7 +12,16 @@ namespaceclaim
 ## To start developing hypercloud-operator
 
 ### Prerequisites
-1. Install kubebuilder (version: [2.3.1](https://github.com/kubernetes-sigs/kubebuilder/releases/tag/v2.3.1))
+
+**0. You have a working [Go environment](https://golang.org/doc/install)**
+```bash
+$ git clone https://github.com/tmax-cloud/hypercloud-operator-go
+$ cd hypercloud-operator-go
+$ export GO111MODULE=on
+$ make
+```
+
+**1. Install kubebuilder (version: [2.3.1](https://github.com/kubernetes-sigs/kubebuilder/releases/tag/v2.3.1))**
 ```bash
 $ release=2.3.1
 $ os=$(go env GOOS)
@@ -22,7 +31,7 @@ $ mv /tmp/kubebuilder_2.3.1_${os}_${arch} /usr/local/kubebuilder
 $ export PATH=$PATH:/usr/local/kubebuilder/bin
 ```
 
-2. Install operator-sdk (version: [v1.0.0](https://github.com/operator-framework/operator-sdk/releases/tag/v1.0.0))
+**2. Install operator-sdk (version: [v1.0.0](https://github.com/operator-framework/operator-sdk/releases/tag/v1.0.0))**
 ```bash
 $ release=v1.0.0
 $ os=$(go env GOOS)
@@ -31,5 +40,3 @@ $ curl -OJL https://github.com/operator-framework/operator-sdk/releases/download
 $ chmod +x operator-sdk-${release}-${arch}-${os}-gnu
 $ mv operator-sdk-${release}-${arch}-${os}-gnu /usr/local/bin/operator-sdk
 ```
-
-
