@@ -28,7 +28,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
 	claimv1alpha1 "tmax.io/apis/claim/v1alpha1"
-	"tmax.io/controllers/claim"
+	claimcontroller "tmax.io/controllers/claim"
 	// +kubebuilder:scaffold:imports
 )
 
@@ -67,7 +67,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err = (&controllers.NamespaceClaimReconciler{
+	if err = (&claimcontroller.NamespaceClaimReconciler{
 		Client: mgr.GetClient(),
 		Log:    ctrl.Log.WithName("controllers").WithName("NamespaceClaim"),
 		Scheme: mgr.GetScheme(),
