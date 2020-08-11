@@ -65,6 +65,7 @@ func (r *NamespaceClaimReconciler) Reconcile(req ctrl.Request) (ctrl.Result, err
 	reqLogger.Info("nsc status:" + string(namespaceClaim.Status.Status))
 	if err != nil && !errors.IsNotFound(err) {
 		reqLogger.Error(err, "failed to get namespace info")
+		return ctrl.Result{}, err
 	}
 
 	switch namespaceClaim.Status.Status {
@@ -90,12 +91,12 @@ func (r *NamespaceClaimReconciler) Reconcile(req ctrl.Request) (ctrl.Result, err
 				reqLogger.Error(err, "Failed to create namespace.")
 				namespaceClaim.Status.Status = claim.NamespaceClaimStatueTypeError
 				namespaceClaim.Status.Reason = "Failed to create namespace"
+				namespaceClaim.Status.Message = err.Error()
 			}
-		} else {
-			reqLogger.Error(err, "Failed to get namespace info.")
 		}
 	}
 
+	namespaceClaim.Status.LastTransitionTime = metav1.Now()
 	if err := r.Update(context.TODO(), namespaceClaim); err != nil {
 		reqLogger.Error(err, "Failed to update namespaceclaim status.")
 		return ctrl.Result{}, err

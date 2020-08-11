@@ -19,8 +19,8 @@ spec:
   scope: Cluster
   validation:
     openAPIV3Schema:
-      description: kubebuilder:subresource:status NamespaceClaim is the Schema for
-        the namespaceclaims API
+      description: kubebuilder:subresource:status might be use NamespaceClaim is the
+        Schema for the namespaceclaims API
       properties:
         apiVersion:
           description: 'APIVersion defines the versioned schema of this representation
@@ -44,19 +44,22 @@ spec:
                 - type: string
                 pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                 x-kubernetes-int-or-string: true
-              description: Foo is an example field of NamespaceClaim. Edit NamespaceClaim_types.go
-                to remove/update Foo string `json:"foo,omitempty"`
+              description: ResourceList is a set of (resource name, quantity) pairs.
               type: object
           type: object
         status:
           description: NamespaceClaimStatus defines the observed state of NamespaceClaim
           properties:
+            lastTransitionTime:
+              format: date-time
+              type: string
             message:
               type: string
             reason:
               type: string
             status:
-              description: NamespaceClaimStatusType
+              description: NamespaceClaimStatusType defines namespaceclaim status
+                type
               enum:
               - Awaiting
               - Success

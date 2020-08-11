@@ -5,4 +5,4 @@ kind: Kustomization
 images:
 - name: controller
   newName: hypercloud
-  newTag: v06
+  newTag: v07
