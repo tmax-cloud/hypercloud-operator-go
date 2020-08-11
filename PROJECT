@@ -6,4 +6,7 @@ resources:
 - group: claim
   kind: NamespaceClaim
   version: v1alpha1
+- group: claim
+  kind: RoleBindingClaim
+  version: v1alpha1
 version: 3-alpha
