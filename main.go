@@ -27,8 +27,8 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	claimv1alpha1 "tmax.io/api/v1alpha1"
-	"tmax.io/controllers"
+	claimv1alpha1 "tmax.io/apis/claim/v1alpha1"
+	"tmax.io/controllers/claim"
 	// +kubebuilder:scaffold:imports
 )
 
