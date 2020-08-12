@@ -40,3 +40,5 @@ $ curl -OJL https://github.com/operator-framework/operator-sdk/releases/download
 $ chmod +x operator-sdk-${release}-${arch}-${os}-gnu
 $ mv operator-sdk-${release}-${arch}-${os}-gnu /usr/local/bin/operator-sdk
 ```
+
+### TEST
