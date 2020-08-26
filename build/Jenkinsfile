@@ -1,5 +1,8 @@
 node {
+    def goHome = "/usr/loca/go/bin"
     stage('go build') {
+        sh "echo $PATH"
+        sh "export PATH=$PATH:${goHome}"
         sh "export GO111MODULE=on"
         sh "go build -o test main.go"
     }
