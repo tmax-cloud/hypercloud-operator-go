@@ -1,5 +1,5 @@
 node {
-    def goHome = "/usr/loca/go/bin"
+    def goHome = "/usr/local/go/bin"
     stage('go build') {
         sh "echo $PATH"
         sh "export PATH=$PATH:${goHome}"
