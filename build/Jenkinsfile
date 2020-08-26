@@ -1,0 +1,7 @@
+node {
+    stage('go build') {
+        sh "export GO111MODULE=on"
+        sh "go build -o test main.go"
+    }
+}
+
