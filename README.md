@@ -42,3 +42,4 @@ $ mv operator-sdk-${release}-${arch}-${os}-gnu /usr/local/bin/operator-sdk
 ```
 
 ### TEST
+## TEST
