@@ -5,7 +5,8 @@ node {
     def buildDir = "/var/lib/jenkins/workspace/hypercloud-operator-go"
     
     def scope = "${params.scope}"
-    def (prevVersion, version) = getVersionFromGit(scope);
+    def prevVersion
+    def version
     
     stage('github-config') {
         sh "git config --global user.name hypercloud-bot"
@@ -27,6 +28,7 @@ node {
                 git(branch: "release-v${params.major}.${params.minor}", credentialsId: 'hypercloud-bot', url: "https://github.com/tmax-cloud/hypercloud-operator-go.git")
             }
         }
+        (prevVersion, version) = getVersionFromGit(scope);
         
     }
     
@@ -66,7 +68,7 @@ node {
 
     stage('gitcommit') {
         dir("${buildDir}") {
-            sh "git checkout release-v${params.major}.${params.minor}"
+            sh "sudo git checkout release-v${params.major}.${params.minor}"
             sh "git add -A"
             def commitMsg = "Release commit for Hypercloud-operator-go v${version}"
             sh (script: "git commit -m \"${commitMsg}\" || true")
@@ -153,4 +155,3 @@ def getVersionFromGit(scope) {
     }
     return [prevVersion, version]
 }
-
