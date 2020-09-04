@@ -91,7 +91,7 @@ node {
     }
     
     stage('clean repo') {
-        sh "sudo rm -rf ${buildDir}"
+        sh "sudo rm -rf ${buildDir}/*"
     }
     
     stage('send email') {
