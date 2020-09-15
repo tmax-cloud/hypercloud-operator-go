@@ -5,9 +5,10 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-source ./lib/logging.sh
-source ./lib/test.sh
-source ./cmd/example.sh
+HYPERCLOUD_ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/..
+source "${HYPERCLOUD_ROOT}/test/lib/logging.sh"
+source "${HYPERCLOUD_ROOT}/test/lib/test.sh"
+source "${HYPERCLOUD_ROOT}/test/cmd/example.sh"
 
 function record_command() {
     set +o nounset
