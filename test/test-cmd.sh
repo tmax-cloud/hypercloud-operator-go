@@ -8,8 +8,11 @@ set -o pipefail
 HYPERCLOUD_ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/..
 source "${HYPERCLOUD_ROOT}/test/lib/logging.sh"
 source "${HYPERCLOUD_ROOT}/test/lib/test.sh"
-source "${HYPERCLOUD_ROOT}/test/cmd/example.sh"
 source "${HYPERCLOUD_ROOT}/test/lib/sh2ju.sh"
+
+source "${HYPERCLOUD_ROOT}/test/cmd/example.sh"
+source "${HYPERCLOUD_ROOT}/test/cmd/deploy.sh"
+
 
 function record_command() {
     set +o nounset
@@ -79,6 +82,7 @@ runTests() {
   export image_field1="(index .spec.template.spec.containers 1).image"
 
   record_command run_simple_tests
+  record_command run_deploy_operator
 
   if [[ -n "${foundError}" ]]; then
     echo "FAILED TESTS: ""${foundError}"
