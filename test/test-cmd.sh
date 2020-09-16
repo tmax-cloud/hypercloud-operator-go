@@ -9,15 +9,17 @@ HYPERCLOUD_ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/..
 source "${HYPERCLOUD_ROOT}/test/lib/logging.sh"
 source "${HYPERCLOUD_ROOT}/test/lib/test.sh"
 source "${HYPERCLOUD_ROOT}/test/cmd/example.sh"
+source "${HYPERCLOUD_ROOT}/test/lib/sh2ju.sh"
 
 function record_command() {
     set +o nounset
     set +o errexit
 
     local name="$1"
+    local output="${KUBE_JUNIT_REPORT_DIR:-/tmp/junit-results}"
     echo "Recording: ${name}"
     echo "Running command: $*"
-    $1
+    juLog -output="${output}" -class="test-cmd" -name="${name}" "$@"
     local exitCode=$?
     if [[ ${exitCode} -ne 0 ]]; then
       # Record failures for any non-canary commands
@@ -76,11 +78,14 @@ runTests() {
   export image_field0="(index .spec.template.spec.containers 0).image"
   export image_field1="(index .spec.template.spec.containers 1).image"
 
-  record_command run_pod_tests
+  record_command run_simple_tests
 
+  if [[ -n "${foundError}" ]]; then
+    echo "FAILED TESTS: ""${foundError}"
+    exit 1
+  fi
 
-
-
+  hypercloud::log::status "Test done"
 
 }
 

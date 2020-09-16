@@ -33,10 +33,3 @@ hypercloud::log::status() {
   done
 }
 
-
-
-hypercloud::log::status "setadf"
-hypercloud::log::info "helloworld"
-hypercloud::log::errexit
-echo "test done"
-
