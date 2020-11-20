@@ -27,9 +27,9 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	claimv1alpha1 "hypercloud-operator/apis/claim/v1alpha1"
-	claimcontroller "hypercloud-operator/controllers/claim"
-	k8scontroller "hypercloud-operator/controllers/k8s"
+	claimv1alpha1 "github.com/tmax-cloud/hypercloud-operator-go/apis/claim/v1alpha1"
+	claimcontroller "github.com/tmax-cloud/hypercloud-operator-go/controllers/claim"
+	k8scontroller "github.com/tmax-cloud/hypercloud-operator-go/controllers/k8s"
 	// +kubebuilder:scaffold:imports
 )
 

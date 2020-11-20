@@ -31,7 +31,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/event"
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
 
-	claim "hypercloud-operator/apis/claim/v1alpha1"
+	claim "github.com/tmax-cloud/hypercloud-operator-go/apis/claim/v1alpha1"
 )
 
 // ResourceQuotaClaimReconciler reconciles a ResourceQuotaClaim object

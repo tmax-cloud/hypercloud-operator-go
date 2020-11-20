@@ -18,12 +18,12 @@ package controllers
 
 import (
 	"context"
-	"hypercloud-operator/util"
+	"github.com/tmax-cloud/hypercloud-operator-go/util"
 	"reflect"
 
 	"fmt"
 
-	claim "hypercloud-operator/apis/claim/v1alpha1"
+	claim "github.com/tmax-cloud/hypercloud-operator-go/apis/claim/v1alpha1"
 
 	"github.com/go-logr/logr"
 	v1 "k8s.io/api/core/v1"

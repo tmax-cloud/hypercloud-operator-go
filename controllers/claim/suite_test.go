@@ -30,7 +30,7 @@ import (
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	claimv1alpha1 "hypercloud-operator/apis/claim/v1alpha1"
+	claimv1alpha1 "github.com/tmax-cloud/hypercloud-operator-go/apis/claim/v1alpha1"
 	// +kubebuilder:scaffold:imports
 )
 

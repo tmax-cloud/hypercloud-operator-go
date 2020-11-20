@@ -38,8 +38,8 @@ import (
 
 	"strings"
 
-	claim "hypercloud-operator/apis/claim/v1alpha1"
-	"hypercloud-operator/util"
+	claim "github.com/tmax-cloud/hypercloud-operator-go/apis/claim/v1alpha1"
+	"github.com/tmax-cloud/hypercloud-operator-go/util"
 
 	networkv1 "k8s.io/api/networking/v1"
 	"sigs.k8s.io/yaml"
