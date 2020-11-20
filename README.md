@@ -8,6 +8,9 @@ This is hypercloud operator
 
 ## Features
 namespaceclaim
+roleBindingclaim
+resourceQuotaClaim
+namespace
 
 ## To start developing hypercloud-operator
 
