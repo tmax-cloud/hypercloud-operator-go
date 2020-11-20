@@ -7,54 +7,8 @@ metadata:
   name: manager-role
 rules:
 - apiGroups:
-  - ""
+  - '*'
   resources:
-  - namespaces
+  - '*'
   verbs:
   - '*'
-- apiGroups:
-  - ""
-  resources:
-  - rolebindings
-  verbs:
-  - '*'
-- apiGroups:
-  - claim.tmax.io
-  resources:
-  - namespaceclaims
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - claim.tmax.io
-  resources:
-  - namespaceclaims/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
-  - claim.tmax.io
-  resources:
-  - rolebindingclaims
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - claim.tmax.io
-  resources:
-  - rolebindingclaims/status
-  verbs:
-  - get
-  - patch
-  - update

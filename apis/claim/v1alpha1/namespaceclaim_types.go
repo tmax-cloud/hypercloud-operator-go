@@ -21,43 +21,39 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// NamespaceClaimSpec defines the desired state of NamespaceClaim
-type NamespaceClaimSpec struct {
-	Hard v1.ResourceList `json:"hard,omitempty" protobuf:"bytes,1,rep,name=hard,casttype=ResourceList,castkey=ResourceName"`
-}
-
 // +kubebuilder:validation:Enum=Awaiting;Success;Reject;Error
 
-// NamespaceClaimStatusType defines namespaceclaim status type
-type NamespaceClaimStatusType string
-
 const (
-	NamespaceClaimStatusTypeAwaiting NamespaceClaimStatusType = "Awaiting"
-	NamespaceClaimStatusTypeSuccess  NamespaceClaimStatusType = "Success"
-	NamespaceClaimStatusTypeReject   NamespaceClaimStatusType = "Reject"
-	NamespaceClaimStatueTypeError    NamespaceClaimStatusType = "Error"
+	NamespaceClaimStatusTypeAwaiting = "Awaiting"
+	NamespaceClaimStatusTypeSuccess  = "Success"
+	NamespaceClaimStatusTypeReject   = "Reject"
+	NamespaceClaimStatueTypeError    = "Error"
+	NamespaceClaimStatueTypeDeleted  = "Deleted"
 )
 
 // NamespaceClaimStatus defines the observed state of NamespaceClaim
 type NamespaceClaimStatus struct {
-	Message            string                   `json:"message,omitempty" protobuf:"bytes,2,opt,name=message"`
-	Reason             string                   `json:"reason,omitempty" protobuf:"bytes,3,opt,name=reason"`
-	Status             NamespaceClaimStatusType `json:"status,omitempty" protobuf:"bytes,3,opt,name=status"`
-	LastTransitionTime metav1.Time              `json:"lastTransitionTime,omitempty" protobuf:"bytes,3,opt,name=lastTransitionTime"`
+	Message            string      `json:"message,omitempty" protobuf:"bytes,2,opt,name=message"`
+	Reason             string      `json:"reason,omitempty" protobuf:"bytes,3,opt,name=reason"`
+	LastTransitionTime metav1.Time `json:"lastTransitionTime,omitempty" protobuf:"bytes,3,opt,name=lastTransitionTime"`
+
+	// +kubebuilder:validation:Enum=Awaiting;Success;Reject;Error;
+	Status string `json:"status,omitempty" protobuf:"bytes,4,opt,name=status"`
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,shortName=nsc
-// +kubebuilder:rbac:groups="",resources=namespaces,verbs=*
-
-// kubebuilder:subresource:status might be use
+// +kubebuilder:printcolumn:name="ResourceName",type=string,JSONPath=`.resourceName`
+// +kubebuilder:printcolumn:name="Status",type=string,JSONPath=`.status.status`
+// +kubebuilder:printcolumn:name="Reason",type=string,JSONPath=`.status.reason`
 // NamespaceClaim is the Schema for the namespaceclaims API
 type NamespaceClaim struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-
-	Spec   NamespaceClaimSpec   `json:"spec,omitempty"`
-	Status NamespaceClaimStatus `json:"status,omitempty"`
+	ResourceName      string               `json:"resourceName"`
+	Spec              v1.ResourceQuotaSpec `json:"spec,omitempty"`
+	Status            NamespaceClaimStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
